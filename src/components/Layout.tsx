@@ -10,28 +10,29 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen flex flex-col">
       <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
         <div>
-          <Link href="/">
-            <a className="font-bold text-xl">1 Time</a>
+          <Link href="/" className="font-bold text-xl">
+            1 Time
           </Link>
         </div>
         <nav>
-          <Link href="/contacts">
-            <a className="mx-2">Contacts</a>
+          <Link href="/contacts" className="mx-2">
+            Contacts
           </Link>
-          <Link href="/messages">
-            <a className="mx-2">Messages</a>
+          <Link href="/messages" className="mx-2">
+            Messages
           </Link>
-          <Link href="/templates">
-            <a className="mx-2">Templates</a>
+          <Link href="/templates" className="mx-2">
+            Templates
           </Link>
           {session ? (
             <button onClick={() => signOut()} className="mx-2">
               Sign Out
             </button>
           ) : (
-            <Link href="/api/auth/signin">
-              <a className="mx-2">Sign In</a>
+            <Link href="/api/auth/signin" className="mx-2">
+            Sign In
             </Link>
+
           )}
         </nav>
       </header>

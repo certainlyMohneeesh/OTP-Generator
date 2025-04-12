@@ -11,7 +11,6 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Replace with your own authentication logic
         if (credentials?.username === "admin" && credentials?.password === "password") {
           return { id: "1", name: "Admin", email: "" };
         }

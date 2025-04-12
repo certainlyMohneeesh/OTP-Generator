@@ -30,10 +30,8 @@ const ContactDetailPage = () => {
       <p>
         <strong>Phone:</strong> {contact.phone}
       </p>
-      <Link href={`/messages?contactId=${contact.id}`}>
-        <a className="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded">
+      <Link href={`/messages?contactId=${contact.id}`} className="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded">
           Send Message
-        </a>
       </Link>
     </Layout>
   );

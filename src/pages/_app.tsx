@@ -1,5 +1,5 @@
 import { SessionProvider } from "next-auth/react";
-import "../styles/globals.css";
+import "@/app/globals.css";
 import { ToastProvider } from "@/components/ToastProvider"; // Custom provider wrapping shadcn toast
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
