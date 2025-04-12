@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { sendSMS } from "@/lib/sms";
 import { useRouter } from "next/router";
 import { useToast } from "./ToastProvider";
+import axios from "axios";
 
 interface MessageFormProps {
   contactId: number;
@@ -40,11 +40,20 @@ const MessageForm: React.FC<MessageFormProps> = ({ contactId, phone, template })
   const handleSend = async () => {
     try {
       const expiresAt = new Date(Date.now() + 300 * 1000);
-      await sendSMS({ to: phone, content: message, otp, contactId, expiresAt });
+      await axios.post('/api/send-sms', {
+        to: phone,
+        content: message,
+        otp,
+        contactId,
+        expiresAt: expiresAt.toISOString(),
+      });
       addToast({ message: "Message sent successfully!", type: "success" });
       router.push("/messages");
     } catch (error: any) {
-      addToast({ message: error.message || "Failed to send message", type: "error" });
+      addToast({ 
+        message: error.response?.data?.error || error.message || "Failed to send message", 
+        type: "error" 
+      });
     }
   };
 

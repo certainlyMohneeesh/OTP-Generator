@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ContactItem from "./ContactItem";
-import { getContacts } from "@/lib/contacts";
 import { Contact } from "@prisma/client";
+import axios from "axios";
 
 interface ContactListProps {
   page: number;
@@ -14,8 +14,12 @@ const ContactList: React.FC<ContactListProps> = ({ page, setPage }) => {
 
   useEffect(() => {
     (async () => {
-      const data = await getContacts(page, perPage);
-      setContacts(data);
+      try {
+        const response = await axios.get(`/api/contacts?page=${page}&perPage=${perPage}`);
+        setContacts(response.data);
+      } catch (error) {
+        console.error("Failed to fetch contacts:", error);
+      }
     })();
   }, [page]);
 
